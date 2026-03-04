@@ -4,10 +4,10 @@ function NotFoundPage() {
   return (
     <div>
       <h1>404</h1>
-      <h2>Page not found</h2>
-      <p>The page you are looking for does not exist.</p>
+      <h2>Sidan finns inte. </h2>
+      <p>Sidan du försöker hitta finns inte eller har tagits bort.</p>
 
-      <Link to="/">Go back to Home</Link>
+      <Link to="/">Gå tillbaka till startsidan.</Link>
     </div>
   )
 }
