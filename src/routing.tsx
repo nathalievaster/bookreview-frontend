@@ -6,7 +6,43 @@ import MyPage from "./pages/MyPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
+import Layout from "./components/Layout";
 
-cons router = createBrowserRouter([
-    
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Layout />,
+        children: [
+            {
+                path: "/",
+                element: <HomePage />
+            },
+            {
+                path: "/login",
+                element: <LoginPage />
+            },
+            {
+                path: "/register",
+                element: <RegisterPage />
+            },
+            {
+                path: "/mypage",
+                element: <MyPage />
+            },
+            {
+                path: "/books/:id",
+                element: <BookDetailsPage />
+            },
+            {
+                path: "/search",
+                element: <SearchResultsPage />
+            },
+            {
+                path: "*",
+                element: <NotFoundPage />
+            }
+        ]
+    }
 ])
+
+export default router;
