@@ -1,38 +1,23 @@
 import { NavLink } from "react-router-dom"
 import styles from "./Header.module.css"
 import { useAuth } from "../context/AuthContext"
+import { useState } from "react"
 
 const Header = () => {
 
   const { user, logout } = useAuth()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className={styles.header}>
-      <ul className={styles.navList}>
+    <>
+      <header className={styles.header}>
 
-        <li>
-          <NavLink to="/" className={styles.navLink}>
-            Startsida
-          </NavLink>
-        </li>
+        <div className={styles.logo}>
+          BOKTOK
+        </div>
 
-        {user && (
-          <li>
-            <NavLink to="/mypage" className={styles.navLink}>
-              Mina sidor
-            </NavLink>
-          </li>
-        )}
+        <div className={styles.rightSection}>
 
-        {user?.role === "admin" && (
-          <li>
-            <NavLink to="/admin" className={styles.navLink}>
-              Admin
-            </NavLink>
-          </li>
-        )}
-
-        <li>
           {!user ? (
             <NavLink to="/login" className={styles.navLink}>
               Logga in
@@ -42,10 +27,56 @@ const Header = () => {
               Logga ut
             </button>
           )}
-        </li>
 
-      </ul>
-    </header>
+          <button
+            className={styles.hamburger}
+            onClick={() => setMenuOpen(true)}
+          >
+            ☰
+          </button>
+
+        </div>
+
+      </header>
+
+      <nav className={`${styles.sideMenu} ${menuOpen ? styles.open : ""}`}>
+
+        <button
+          className={styles.closeBtn}
+          onClick={() => setMenuOpen(false)}
+        >
+          ✕
+        </button>
+
+        <NavLink to="/" onClick={() => setMenuOpen(false)}>
+          Startsida
+        </NavLink>
+
+        {user && (
+          <NavLink to="/mypage" onClick={() => setMenuOpen(false)}>
+            Mina sidor
+          </NavLink>
+        )}
+
+        {user?.role === "admin" && (
+          <NavLink to="/admin" onClick={() => setMenuOpen(false)}>
+            Admin
+          </NavLink>
+        )}
+
+        <NavLink to="/search" onClick={() => setMenuOpen(false)}>
+          Sök böcker
+        </NavLink>
+
+      </nav>
+
+      {menuOpen && (
+        <div
+          className={styles.overlay}
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+    </>
   )
 }
 
