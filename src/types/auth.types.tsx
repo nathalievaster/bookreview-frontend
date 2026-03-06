@@ -1,7 +1,8 @@
 // Hur en inloggad användare ser ut
 export interface User {
     id: string,
-    username: string
+    username: string,
+    role: "user" | "admin"
 }
 
 // Vad som krävs för att logga in

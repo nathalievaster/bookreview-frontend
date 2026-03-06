@@ -8,6 +8,8 @@ import RegisterPage from "./pages/RegisterPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
+import AdminPage from "./pages/AdminPage";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
             {
                 path: "*",
                 element: <NotFoundPage />
+            },
+            {
+                path: "/admin",
+                element: (
+                    <AdminRoute>
+                        <AdminPage />
+                    </AdminRoute>
+                )
             }
         ]
     }
