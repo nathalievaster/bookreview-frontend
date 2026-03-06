@@ -7,6 +7,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/mypage",
-                element: <MyPage />
+                element: (
+                    <ProtectedRoute>
+                        <MyPage />
+                    </ProtectedRoute>
+                )
             },
             {
                 path: "/books/:id",
