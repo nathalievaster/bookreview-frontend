@@ -1,0 +1,14 @@
+header {
+    background-color: #4C5C2D;
+    color: #D96868;
+    min-height: 100px;
+}
+
+header ul {
+    list-style-type: none;
+}
+
+header a {
+    color: #D96868;
+    text-decoration: none;
+}
