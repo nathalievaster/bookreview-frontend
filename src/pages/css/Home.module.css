@@ -1,15 +1,44 @@
-section {
+.section {
   display: flex;
   align-items: center;
   gap: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  width: 100%;
 }
 
-section img {
-    max-width: 700px;
-    border-radius: 100%;
-}
-
-section div {
+/* Viktigt för att text ska kunna krympa i flex */
+.section div {
   flex: 1;
+  min-width: 0;
+  padding: 4em;
+}
+
+.section img {
+  width: 100%;
+  max-width: 800px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Rund bild */
+.rounded {
+  border-radius: 100%;
+}
+
+.second {
+    background-color: #4C5C2D;
+    color: #FBF6F6;
+}
+
+/* Tablet + mobil */
+@media (max-width: 900px) {
+  .section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .section img {
+    max-width: 100%;
+    height: auto;
+  }
 }

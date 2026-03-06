@@ -1,13 +1,14 @@
 import styles from "./css/Home.module.css"
 import bookshelf from "../assets/bookshelf.avif"
+import bookpaper from "../assets/bookpaper.avif"
 
 const HomePage = () => {
   return (
     <>
       <section className={styles.section}>
-        <img src={bookshelf} alt="Bokhylla" />
+        <img className={styles.rounded} src={bookshelf} alt="Bokhylla" />
         <div>
-          <h1>Välkommen, alla boktokar, till Boktok!</h1>
+          <h1>Välkommen till Boktok!</h1>
           <p>
             Har du svårt att komma på vilken bok du ska dyka ner i härnäst?
             Eller vill du läsa andras tankar om boken du precis läst klart?
@@ -17,9 +18,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className={styles.section}>
-
-
+      <section className={`${styles.section} ${styles.second}`}>
+        <img src={bookpaper} alt="Blad ur flera böcker" />
         <div>
           <h2>Vill du bidra med egna recensioner?</h2>
           <p>
