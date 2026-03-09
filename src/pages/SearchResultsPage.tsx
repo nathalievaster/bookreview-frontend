@@ -70,16 +70,9 @@ const SearchBooksPage = () => {
       <h1>Sök böcker</h1>
 
       <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Sök efter titel eller författare..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-
-        <button className="add-btn" type="submit">
-          Sök
-        </button>
+        <input type="text" placeholder="Sök efter titel eller författare..." value={query}
+          onChange={(e) => setQuery(e.target.value)}/>
+        <button className="add-btn" type="submit">Sök</button>
       </form>
 
       {loading && <p>Laddar böcker...</p>}
@@ -90,7 +83,7 @@ const SearchBooksPage = () => {
 
       {hasSearched && <h2>Sökresultat</h2>}
 
-      <div>
+      <section className={styles.section}>
         {books.map(book => (
 
           <Link key={book._id} to={`/books/${book._id}`}>
@@ -102,7 +95,7 @@ const SearchBooksPage = () => {
             {book.publishedYear && (<p>{book.publishedYear}</p>)} </Link>
 
         ))}
-      </div>
+      </section>
 
     </>
   )

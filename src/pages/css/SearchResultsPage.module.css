@@ -1,5 +1,55 @@
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 input {
     border-radius: 20px;
-    padding: 1em 1.5em;
+    padding: 1em 1.8em;
     margin-right: 1em;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  margin: 1em;
+}
+
+/* varje bok */
+.section a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  max-width: 250px;
+  width: 95%;
+  transition: transform 0.2s ease;
+  margin: 2em auto;
+  padding: 1em;
+}
+
+.section a:hover {
+  transform: scale(1.03);
+}
+
+/* bokbild */
+.section img {
+  max-height: 220px;
+  width: auto;
+  object-fit: cover;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+/* mobil */
+@media (max-width: 768px) {
+  .section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+    .section {
+        grid-template-columns: 1fr;
+    }
 }
