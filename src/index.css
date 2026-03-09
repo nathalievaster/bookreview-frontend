@@ -9,3 +9,20 @@ h1 {
   text-align: center;
 }
 
+.add-btn {
+  background-color: #6A7E3F;
+}
+
+.delete-btn {
+  background-color: #D96868;
+}
+
+button {
+  color: #FBF6F6;
+  border-radius: 20px;
+  padding: 0.7em 1.5em;
+  border-style: none;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  font-size: 1em;
+}

@@ -77,7 +77,7 @@ const SearchBooksPage = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
 
-        <button type="submit">
+        <button className="add-btn" type="submit">
           Sök
         </button>
       </form>
