@@ -12,20 +12,21 @@ input {
 .section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2em;
   margin: 1em;
 }
 
 /* varje bok */
-.section a {
+.bookCard {
   display: block;
   text-decoration: none;
   color: inherit;
-  max-width: 250px;
+  max-width: 350px;
   width: 95%;
   transition: transform 0.2s ease;
   margin: 2em auto;
   padding: 1em;
+  background-color: #f3eaea;
+  border-radius: 2em;
 }
 
 .section a:hover {

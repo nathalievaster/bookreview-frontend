@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import type { Book } from "../types/book.types"
+import { useAuth } from "../context/AuthContext"
+
 import styles from './css/SearchResultsPage.module.css'
 
 const SearchBooksPage = () => {
@@ -11,6 +13,7 @@ const SearchBooksPage = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [hasSearched, setHasSearched] = useState(false)
+  const { user } = useAuth()
 
   const fetchBooks = async (searchQuery: string) => {
     setLoading(true)
@@ -71,7 +74,7 @@ const SearchBooksPage = () => {
 
       <form onSubmit={handleSearch}>
         <input type="text" placeholder="Sök efter titel eller författare..." value={query}
-          onChange={(e) => setQuery(e.target.value)}/>
+          onChange={(e) => setQuery(e.target.value)} />
         <button className="add-btn" type="submit">Sök</button>
       </form>
 
@@ -86,14 +89,16 @@ const SearchBooksPage = () => {
       <section className={styles.section}>
         {books.map(book => (
 
-          <Link key={book._id} to={`/books/${book._id}`}>
+          <div key={book._id} className={styles.bookCard}>
+            {book.image && ( <img src={book.image} alt={book.title} className={styles.bookImage} />)}
             <h3>{book.title}</h3>
-            {book.image && (
-              <img src={book.image} alt={book.title} />
-            )}
             <p>{book.author}</p>
-            {book.publishedYear && (<p>{book.publishedYear}</p>)} </Link>
+            {book.publishedYear && (<p>{book.publishedYear}</p>)}
 
+              <Link to={`/books/${book._id}`}>Läs mer</Link>
+
+              {user && (<Link to={`/books/${book._id}`} className={styles.reviewButton}>Skriv recension</Link>)}
+            </div>
         ))}
       </section>
 
