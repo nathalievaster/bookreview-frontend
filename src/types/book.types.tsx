@@ -3,5 +3,6 @@ export interface Book {
   title: string
   author: string
   description?: string
-  publishedYear?: number
+  publishedYear?: number,
+  image: string
 }

@@ -1,8 +1,111 @@
 // Visa sökresultat från Google Books API
-const SearchResultsPage = () => {
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import type { Book } from "../types/book.types"
+import styles from './css/SearchResultsPage.module.css'
+
+const SearchBooksPage = () => {
+
+  const [query, setQuery] = useState("")
+  const [books, setBooks] = useState<Book[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [hasSearched, setHasSearched] = useState(false)
+
+  const fetchBooks = async (searchQuery: string) => {
+    setLoading(true)
+    setError(null)
+
+    try {
+
+      const res = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=10`
+      )
+
+      if (!res.ok) {
+        throw new Error("Kunde inte hämta böcker")
+      }
+
+      const data = await res.json()
+
+      const mappedBooks: Book[] = data.items?.map((item: any) => ({
+        _id: item.id,
+        title: item.volumeInfo.title,
+        author: item.volumeInfo.authors?.[0] || "Okänd författare",
+        description: item.volumeInfo.description,
+        publishedYear: item.volumeInfo.publishedDate?.slice(0, 4),
+        image: item.volumeInfo.imageLinks?.smallThumbnail
+      })) || []
+
+      setBooks(mappedBooks)
+
+    } catch (err) {
+      setError("Något gick fel vid hämtning av böcker")
+    }
+
+    setLoading(false)
+  }
+  const [hasLoaded, setHasLoaded] = useState(false)
+
+  // Featured books när sidan laddas
+  useEffect(() => {
+    if (!hasLoaded) {
+      fetchBooks("popular fiction")
+      setHasLoaded(true)
+    }
+  }, [hasLoaded])
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!query.trim()) return
+
+    setHasSearched(true)
+    fetchBooks(query)
+  }
+
   return (
-    <div>SearchResultsPage</div>
+    <>
+
+      <h1>Sök böcker</h1>
+
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Sök efter titel eller författare..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+
+        <button type="submit">
+          Sök
+        </button>
+      </form>
+
+      {loading && <p>Laddar böcker...</p>}
+
+      {error && <p>{error}</p>}
+
+      {!hasSearched && <h2>Populära böcker</h2>}
+
+      {hasSearched && <h2>Sökresultat</h2>}
+
+      <div>
+        {books.map(book => (
+
+          <Link key={book._id} to={`/books/${book._id}`}>
+            <h3>{book.title}</h3>
+            {book.image && (
+              <img src={book.image} alt={book.title} />
+            )}
+            <p>{book.author}</p>
+            {book.publishedYear && (<p>{book.publishedYear}</p>)} </Link>
+
+        ))}
+      </div>
+
+    </>
   )
 }
 
-export default SearchResultsPage
+export default SearchBooksPage
