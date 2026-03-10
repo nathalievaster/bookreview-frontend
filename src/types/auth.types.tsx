@@ -7,7 +7,7 @@ export interface User {
 
 // Vad som krävs för att logga in
 export interface LoginCredentials {
-    username: string,
+    email: string,
     password: string
 }
 

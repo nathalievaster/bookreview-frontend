@@ -8,7 +8,7 @@ const LoginPage = () => {
   const { login } = useAuth()
   const navigate = useNavigate()
 
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
@@ -16,7 +16,7 @@ const LoginPage = () => {
     e.preventDefault()
 
     try {
-      await login({ username, password })
+      await login({ email, password })
       navigate("/")
     } catch {
       setError("Fel användarnamn eller lösenord")
@@ -30,7 +30,7 @@ const LoginPage = () => {
 
       <form onSubmit={handleSubmit} className={styles.form}>
 
-        <input type="text" placeholder="Användarnamn" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
         <input type="password" placeholder="Lösenord" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
