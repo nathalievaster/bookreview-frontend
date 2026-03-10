@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import type { Book } from "../types/book.types"
 import { useAuth } from "../context/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 import styles from './css/SearchResultsPage.module.css'
 
@@ -14,6 +15,7 @@ const SearchBooksPage = () => {
   const [error, setError] = useState<string | null>(null)
   const [hasSearched, setHasSearched] = useState(false)
   const { user } = useAuth()
+  const navigate = useNavigate()
 
   const fetchBooks = async (searchQuery: string) => {
     setLoading(true)
@@ -90,15 +92,16 @@ const SearchBooksPage = () => {
         {books.map(book => (
 
           <div key={book._id} className={styles.bookCard}>
-            {book.image && ( <img src={book.image} alt={book.title} className={styles.bookImage} />)}
+            {book.image && (<img src={book.image} alt={book.title} className={styles.bookImage} />)}
             <h3>{book.title}</h3>
             <p>{book.author}</p>
             {book.publishedYear && (<p>{book.publishedYear}</p>)}
-
-              <Link to={`/books/${book._id}`}>Läs mer</Link>
-
-              {user && (<Link to={`/books/${book._id}`} className={styles.reviewButton}>Skriv recension</Link>)}
+            
+            <div className={styles.buttons}>
+            <button className="add-btn" onClick={() => navigate(`/books/${book._id}`)}>Läs mer</button>
+            {user && (<button className="delete-btn" onClick={() => navigate(`/books/${book._id}`)}>Skriv en recension</button>)}
             </div>
+          </div>
         ))}
       </section>
 

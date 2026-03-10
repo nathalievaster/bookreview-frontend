@@ -54,3 +54,10 @@ input {
         grid-template-columns: 1fr;
     }
 }
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 250px;
+}
