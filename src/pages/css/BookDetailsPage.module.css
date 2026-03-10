@@ -1,0 +1,74 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.bookSection {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.bookImage {
+  min-height: 200px;
+  width: auto;
+}
+
+.bookInfo {
+  flex: 1;
+}
+
+.description {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.reviewButton {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1rem;
+  background-color: #4C5C2D;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.reviewForm {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.reviewForm textarea {
+  min-height: 100px;
+  padding: 0.5rem;
+}
+
+.reviewSection {
+  margin-top: 3rem;
+}
+
+.reviewCard {
+  border-top: 1px solid #ddd;
+  padding: 1.5rem 0;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.reviewUser {
+  font-weight: bold;
+}
+
+.reviewRating {
+  color: #f4b400;
+  font-weight: bold;
+}
+
+.reviewText {
+  line-height: 1.6;
+}
