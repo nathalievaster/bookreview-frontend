@@ -30,17 +30,17 @@ const LoginPage = () => {
 
       <form onSubmit={handleSubmit} className={styles.form}>
 
-        <input type="text" placeholder="Användarnamn" value={username} onChange={(e) => setUsername(e.target.value)}required/>
+        <input type="text" placeholder="Användarnamn" value={username} onChange={(e) => setUsername(e.target.value)} required />
 
         <input type="password" placeholder="Lösenord" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
         <button className="add-btn" type="submit">Logga in</button>
         <p>Inget konto än?</p>
-        <button className="add-btn">Registrera dig här</button>
+        <button className="add-btn" onClick={() => navigate("/register")}>Registrera dig här</button>
 
       </form>
 
-      {error && ( <p className={styles.error}> {error}</p> )}
+      {error && (<p className={styles.error}> {error}</p>)}
     </div>
   )
 }
