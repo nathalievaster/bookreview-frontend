@@ -94,28 +94,17 @@ const BookDetailsPage = () => {
           )}
 
           {user && (
-            <button
-              className={styles.reviewButton}
-              onClick={() => setShowForm(!showForm)}
-            >
-              Skriv recension
-            </button>
+            <button className="delete-btn"
+              onClick={() => setShowForm(!showForm)}>Skriv recension</button>
           )}
 
           {showForm && (
             <form onSubmit={handleSubmit} className={styles.reviewForm}>
 
-              <textarea
-                value={reviewText}
-                onChange={(e) => setReviewText(e.target.value)}
-                placeholder="Skriv din recension..."
-                required
-              />
+              <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)}
+                placeholder="Skriv din recension..." />
 
-              <select
-                value={rating}
-                onChange={(e) => setRating(Number(e.target.value))}
-              >
+              <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
                 <option value="5">5</option>
                 <option value="4">4</option>
                 <option value="3">3</option>
@@ -123,10 +112,7 @@ const BookDetailsPage = () => {
                 <option value="1">1</option>
               </select>
 
-              <button type="submit">
-                Publicera recension
-              </button>
-
+              <button className="add-btn" type="submit"> Publicera recension</button>
             </form>
           )}
 

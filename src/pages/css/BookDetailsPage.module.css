@@ -1,74 +1,87 @@
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 .bookSection {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 3rem;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: flex-start;
 }
 
 .bookImage {
-  min-height: 200px;
-  width: auto;
+    width: 180px;
+    height: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-top: 5em;
 }
 
 .bookInfo {
-  flex: 1;
+    flex: 1;
 }
 
 .description {
-  margin-top: 1rem;
-  line-height: 1.6;
+    margin-top: 1rem;
+    line-height: 1.6;
 }
 
 .reviewButton {
-  margin-top: 1.5rem;
-  padding: 0.6rem 1rem;
-  background-color: #4C5C2D;
-  color: white;
-  border: none;
-  cursor: pointer;
+    margin-top: 1.5rem;
+    padding: 0.6rem 1rem;
+    background-color: #4C5C2D;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 .reviewForm {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .reviewForm textarea {
-  min-height: 100px;
-  padding: 0.5rem;
+    min-height: 100px;
+    padding: 1rem;
+    border-radius: 20px;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+}
+
+.reviewForm select {
+    padding: 0.7em;
+    border-radius: 20px;
+    max-width: 50px;
 }
 
 .reviewSection {
-  margin-top: 3rem;
+    margin-top: 3rem;
 }
 
 .reviewCard {
-  border-top: 1px solid #ddd;
-  padding: 1.5rem 0;
+    border-top: 1px solid #ddd;
+    padding: 1.5rem 0;
 }
 
 .reviewHeader {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
 
 .reviewUser {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .reviewRating {
-  color: #f4b400;
-  font-weight: bold;
+    color: #f4b400;
+    font-weight: bold;
 }
 
 .reviewText {
-  line-height: 1.6;
+    line-height: 1.6;
 }
