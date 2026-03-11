@@ -92,11 +92,7 @@ const MyPage = () => {
         <h2>Användaruppgifter</h2>
 
         <p><strong>Användarnamn:</strong> {user?.username}</p>
-
-        {user?.email && (
-          <p><strong>Email:</strong> {user.email}</p>
-
-        )}
+        <p><strong>Email:</strong> {user?.email}</p>
 
       </section>
 
