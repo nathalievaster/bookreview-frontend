@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import styles from "./css/AdminPage.module.css"
+import styles from "./css/MyPage.module.css"
 import type { Review } from "../types/review.types"
 
 const AdminPage = () => {
@@ -50,14 +50,12 @@ const AdminPage = () => {
 
       <h1>Adminpanel</h1>
 
-      <h2>Alla recensioner</h2>
-
       {reviews.length === 0 && (
         <p>Inga recensioner finns.</p>
       )}
 
-      <section className={styles.reviewList}>
-
+      <section className={styles.reviewSection}>
+        <h2>Alla recensioner</h2>
         {reviews.map(review => (
 
           <div key={review._id} className={styles.reviewCard}>
