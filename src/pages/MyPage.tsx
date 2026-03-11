@@ -65,7 +65,7 @@ const MyPage = () => {
           <div key={review._id} className={styles.reviewCard}>
 
             <div className={styles.reviewHeader}>
-              <h2></h2>
+              <h2>{review.bookTitle}</h2>
 
               <button className="add-btn" onClick={() => navigate(`/books/${review.bookId}`)}>Gå till bok</button>
 

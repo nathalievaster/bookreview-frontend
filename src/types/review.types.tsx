@@ -1,6 +1,7 @@
 export interface Review {
   _id: string
   bookId: string
+  bookTitle: string
   user: {
     id: string
     username: string

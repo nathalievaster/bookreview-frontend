@@ -53,6 +53,9 @@ const BookDetailsPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    // Ett skydd ifall book är null
+    if (!book) return
+
     const token = localStorage.getItem("token")
 
     await fetch("http://localhost:5000/api/reviews", {
@@ -63,6 +66,7 @@ const BookDetailsPage = () => {
       },
       body: JSON.stringify({
         bookId: id,
+        bookTitle: book.title,
         reviewText,
         rating
       })
