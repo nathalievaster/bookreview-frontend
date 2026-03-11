@@ -1,6 +1,5 @@
 // Visa sökresultat från Google Books API
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import type { Book } from "../types/book.types"
 import { useAuth } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"

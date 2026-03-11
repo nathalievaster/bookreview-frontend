@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import styles from "./css/MyPage.module.css"
 import type { Review } from "../types/review.types"
+import { useNavigate } from "react-router-dom"
 
 const MyPage = () => {
 
@@ -10,6 +10,7 @@ const MyPage = () => {
 
   const [reviews, setReviews] = useState<Review[]>([])
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchMyReviews()
@@ -64,10 +65,9 @@ const MyPage = () => {
           <div key={review._id} className={styles.reviewCard}>
 
             <div className={styles.reviewHeader}>
+              <h2></h2>
 
-              <Link to={`/books/${review.bookId}`}>
-                Gå till bok
-              </Link>
+              <button className="add-btn" onClick={() => navigate(`/books/${review.bookId}`)}>Gå till bok</button>
 
               <span>
                 ⭐ {review.rating}/5
