@@ -1,5 +1,5 @@
 // Visa sökresultat från Google Books API
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import type { Book } from "../types/book.types"
 import { useAuth } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
@@ -16,6 +16,8 @@ const SearchBooksPage = () => {
   const { user } = useAuth()
   const navigate = useNavigate()
 
+  const hasFetched = useRef(false)
+
   const fetchBooks = async (searchQuery: string) => {
     setLoading(true)
     setError(null)
@@ -23,7 +25,7 @@ const SearchBooksPage = () => {
     try {
 
       const res = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=10`
+        `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchQuery)}&maxResults=10&key=AIzaSyBGoB7iq8eSdHU_4kcQrUQk9DKi6nmRuj4`
       )
 
       if (!res.ok) {
@@ -49,15 +51,16 @@ const SearchBooksPage = () => {
 
     setLoading(false)
   }
-  const [hasLoaded, setHasLoaded] = useState(false)
 
-  // Featured books när sidan laddas
+  // Använder ref för att undvika "too many requests"
   useEffect(() => {
-    if (!hasLoaded) {
-      fetchBooks("popular fiction")
-      setHasLoaded(true)
-    }
-  }, [hasLoaded])
+
+    if (hasFetched.current) return
+    hasFetched.current = true
+
+    fetchBooks("subject:fiction")
+
+  }, [])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -95,10 +98,10 @@ const SearchBooksPage = () => {
             <h3>{book.title}</h3>
             <p>{book.author}</p>
             {book.publishedYear && (<p>{book.publishedYear}</p>)}
-            
+
             <div className={styles.buttons}>
-            <button className="add-btn" onClick={() => navigate(`/books/${book._id}`)}>Läs mer</button>
-            {user && (<button className="delete-btn" onClick={() => navigate(`/books/${book._id}`)}>Skriv en recension</button>)}
+              <button className="add-btn" onClick={() => navigate(`/books/${book._id}`)}>Läs mer</button>
+              {user && (<button className="delete-btn" onClick={() => navigate(`/books/${book._id}`)}>Skriv en recension</button>)}
             </div>
           </div>
         ))}
