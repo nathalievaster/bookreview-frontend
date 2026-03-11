@@ -17,6 +17,8 @@ const SearchBooksPage = () => {
   const navigate = useNavigate()
 
   const hasFetched = useRef(false)
+  // Hämtar api-nyckel från .env
+  const API_KEY = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY
 
   const fetchBooks = async (searchQuery: string) => {
     setLoading(true)
@@ -25,7 +27,7 @@ const SearchBooksPage = () => {
     try {
 
       const res = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchQuery)}&maxResults=10&key=AIzaSyBGoB7iq8eSdHU_4kcQrUQk9DKi6nmRuj4`
+        `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchQuery)}&maxResults=10&key=${API_KEY}`
       )
 
       if (!res.ok) {

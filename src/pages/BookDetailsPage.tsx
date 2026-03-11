@@ -23,13 +23,16 @@ const BookDetailsPage = () => {
   const [reviewText, setReviewText] = useState("")
   const [rating, setRating] = useState(5)
 
+  // Hämtar api-nyckel från .env
+  const API_KEY = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY
+
   useEffect(() => {
     fetchBook()
     fetchReviews()
   }, [id])
 
   const fetchBook = async () => {
-    const res = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    const res = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}?key=${API_KEY}`)
     const data = await res.json()
 
     setBook({
