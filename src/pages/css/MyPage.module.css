@@ -4,21 +4,25 @@
 
 .profileSection {
     background-color: white;
-    max-width: 450px;
+    max-width: 550px;
     margin: 1em auto;
     padding: 2em;
     border-radius: 20px;
 }
 
 .reviewSection {
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 .reviewCard {
-    max-width: 500px;
+    max-width: 600px;
     padding: 2em;
     border-radius: 20px;
     margin: 1em auto;
     background-color: white;
+}
+
+button {
+    margin-right: 0.5em;
 }

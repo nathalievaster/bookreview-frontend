@@ -36,18 +36,37 @@ const MyPage = () => {
     return <p>Laddar dina recensioner...</p>
   }
 
+  // Radera recension
+  const handleDelete = async (id: string) => {
+  const token = localStorage.getItem("token")
+
+  await fetch(`http://localhost:5000/api/reviews/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  setReviews(reviews.filter(r => r._id !== id))
+}
+
+// Redigera recension
+const handleEdit = (review: Review) => {
+  navigate(`/books/${review.bookId}`)
+}
+
   return (
     <div className={styles.container}>
 
-        <h1>Mina sidor</h1>
-        <section className={styles.profileSection}>
-          <h2>Användaruppgifter</h2>
+      <h1>Mina sidor</h1>
+      <section className={styles.profileSection}>
+        <h2>Användaruppgifter</h2>
 
         <p><strong>Användarnamn:</strong> {user?.username}</p>
 
         {user?.email && (
           <p><strong>Email:</strong> {user.email}</p>
-          
+
         )}
 
       </section>
@@ -76,6 +95,11 @@ const MyPage = () => {
             </div>
 
             <p>{review.reviewText}</p>
+
+            <button
+              className="add-btn" onClick={() => handleEdit(review)}>Redigera</button>
+
+            <button className="delete-btn" onClick={() => handleDelete(review._id)}>Ta bort</button>
 
           </div>
 
