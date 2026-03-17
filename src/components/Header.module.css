@@ -2,15 +2,13 @@
   background-color: #4C5C2D;
   color: #D96868;
   min-height: 100px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 0 40px;
 }
 
-.logo {
+.logo a{
   font-size: 28px;
   font-weight: bold;
 }
@@ -19,6 +17,16 @@
   display: flex;
   align-items: center;
   gap: 20px;
+}
+a {
+  text-decoration: none;
+  color: #D96868;
+  transition: color 0.3s, transform 0.4s; 
+  display: inline-block;
+}
+a:hover {
+  color: #a24d4d;
+  transform: scale(1.1);
 }
 
 .navLink {
@@ -29,9 +37,16 @@
 
 .logoutButton {
   background: none;
-  border: none;
+  border: 3px solid #D96868;
   color: #D96868;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.4s;
+}
+
+.logoutButton:hover {
+  transform: scale(1.05);
+  background-color: #D96868;
+  color: white;
 }
 
 .hamburger {
@@ -50,17 +65,13 @@
   right: 0;
   width: 300px;
   height: 100vh;
-
   background: #4C5C2D;
-
   display: flex;
   flex-direction: column;
   gap: 25px;
   padding: 40px;
-
   transform: translateX(100%);
   transition: transform 0.3s ease;
-
   z-index: 1000;
 }
 
@@ -69,8 +80,6 @@
 }
 
 .sideMenu a {
-  color: #D96868;
-  text-decoration: none;
   font-size: 20px;
 }
 
@@ -89,11 +98,8 @@
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100vw;
   height: 100vh;
-
   background: rgba(0,0,0,0.4);
-
   z-index: 999;
 }

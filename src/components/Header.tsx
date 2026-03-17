@@ -13,7 +13,7 @@ const Header = () => {
       <header className={styles.header}>
 
         <div className={styles.logo}>
-          BOKTOK
+          <NavLink to="/">BOKTOK</NavLink>
         </div>
 
         <div className={styles.rightSection}>
