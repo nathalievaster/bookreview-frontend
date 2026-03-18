@@ -11,10 +11,20 @@ h1 {
 
 .add-btn {
   background-color: #6A7E3F;
+  transition: background-color 0.3s;
 }
 
 .delete-btn {
   background-color: #D96868;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #924747;
+}
+
+.add-btn:hover {
+  background-color: #3b4624;
 }
 
 button {
