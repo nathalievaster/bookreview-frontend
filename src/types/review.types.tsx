@@ -3,7 +3,7 @@ export interface Review {
   bookId: string
   bookTitle: string
   user: {
-    id: string
+    _id: string
     username: string
   }
   reviewText: string

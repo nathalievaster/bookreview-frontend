@@ -28,6 +28,11 @@ const BookDetailsPage = () => {
   // Hämtar api-nyckel från .env
   const API_KEY = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY
 
+  // Kolla om användaren redan recenserat boken
+  const hasReviewed = reviews.some(review => review.user._id === user?._id)
+  console.log("reviews:", reviews)
+console.log("user:", user)
+
   useEffect(() => {
     fetchBook()
     fetchReviews()
@@ -140,9 +145,14 @@ const BookDetailsPage = () => {
             <div dangerouslySetInnerHTML={{ __html: book.description }} />
           )}
 
-          {user && (
-            <button className="delete-btn"
-              onClick={() => setShowForm(!showForm)}>Skriv recension</button>
+          {user && !hasReviewed && (
+            <button className="delete-btn" onClick={() => setShowForm(!showForm)}>
+              Skriv recension
+            </button>
+          )}
+
+          {user && hasReviewed && (
+            <p>Du har redan skrivit en recension för denna bok.</p>
           )}
           {user && (
             <button
