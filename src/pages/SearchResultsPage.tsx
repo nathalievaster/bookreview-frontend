@@ -66,6 +66,23 @@ const SearchBooksPage = () => {
 
   }, [])
 
+  // Hämtar böckerna som ligger i läslistan
+  useEffect(() => {
+  const fetchReadingList = async () => {
+    const token = localStorage.getItem("token")
+    if (!token) return
+
+    const res = await fetch("http://localhost:5000/api/readinglist", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+    const data = await res.json()
+    setAddedBooks(data.map((entry: { bookId: string }) => entry.bookId))
+  }
+
+  fetchReadingList()
+}, [])
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
 
