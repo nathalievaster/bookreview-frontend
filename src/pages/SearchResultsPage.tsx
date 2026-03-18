@@ -66,22 +66,33 @@ const SearchBooksPage = () => {
 
   }, [])
 
+  // Söker medan man skriver
+  useEffect(() => {
+    if (!query.trim()) return
+
+    const timer = setTimeout(() => {
+      fetchBooks(query)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [query])
+
   // Hämtar böckerna som ligger i läslistan
   useEffect(() => {
-  const fetchReadingList = async () => {
-    const token = localStorage.getItem("token")
-    if (!token) return
+    const fetchReadingList = async () => {
+      const token = localStorage.getItem("token")
+      if (!token) return
 
-    const res = await fetch("http://localhost:5000/api/readinglist", {
-      headers: { Authorization: `Bearer ${token}` }
-    })
+      const res = await fetch("http://localhost:5000/api/readinglist", {
+        headers: { Authorization: `Bearer ${token}` }
+      })
 
-    const data = await res.json()
-    setAddedBooks(data.map((entry: { bookId: string }) => entry.bookId))
-  }
+      const data = await res.json()
+      setAddedBooks(data.map((entry: { bookId: string }) => entry.bookId))
+    }
 
-  fetchReadingList()
-}, [])
+    fetchReadingList()
+  }, [])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
