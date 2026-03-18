@@ -30,8 +30,6 @@ const BookDetailsPage = () => {
 
   // Kolla om användaren redan recenserat boken
   const hasReviewed = reviews.some(review => review.user._id === user?._id)
-  console.log("reviews:", reviews)
-console.log("user:", user)
 
   useEffect(() => {
     fetchBook()
@@ -152,7 +150,7 @@ console.log("user:", user)
           )}
 
           {user && hasReviewed && (
-            <p>Du har redan skrivit en recension för denna bok.</p>
+            <p className={styles.hasreviewed}>Du har redan skrivit en recension för denna bok.</p>
           )}
           {user && (
             <button
