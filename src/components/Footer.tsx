@@ -15,9 +15,9 @@ const Footer = () => {
 
         <div className={styles.column}>
           <h4>Utforska</h4>
-          <p>Sök böcker</p>
-          <p>Min läslista</p>
-          <p>Mina recensioner</p>
+          <p>Sök bland böcker</p>
+          <p>Skapa egen läslista</p>
+          <p>Se dina recensioner</p>
         </div>
 
         <div className={styles.column}>
