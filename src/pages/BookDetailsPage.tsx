@@ -22,6 +22,8 @@ const BookDetailsPage = () => {
   const [showForm, setShowForm] = useState(false)
   const [reviewText, setReviewText] = useState("")
   const [rating, setRating] = useState(5)
+  // State för att hålla koll om boken är tillagd eller ej
+  const [isAdded, setIsAdded] = useState(false)
 
   // Hämtar api-nyckel från .env
   const API_KEY = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY
@@ -31,6 +33,44 @@ const BookDetailsPage = () => {
     fetchReviews()
   }, [id])
 
+  // Hämta böckerna som ligger i läslstan
+  useEffect(() => {
+    const fetchReadingList = async () => {
+      const token = localStorage.getItem("token")
+      if (!token) return
+
+      const res = await fetch("http://localhost:5000/api/readinglist", {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+
+      const data = await res.json()
+      setIsAdded(data.some((entry: { bookId: string }) => entry.bookId === id))
+    }
+
+    fetchReadingList()
+  }, [id])
+
+  // Funktion för att lägga till i läslistan
+  const handleAddToReadingList = async () => {
+    if (!book) return
+    const token = localStorage.getItem("token")
+
+    await fetch("http://localhost:5000/api/readinglist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        bookId: id,
+        bookTitle: book.title,
+        bookImage: book.image,
+        status: "want_to_read"
+      })
+    })
+
+    setIsAdded(true)
+  }
   const fetchBook = async () => {
     const res = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}?key=${API_KEY}`)
     const data = await res.json()
@@ -103,6 +143,14 @@ const BookDetailsPage = () => {
           {user && (
             <button className="delete-btn"
               onClick={() => setShowForm(!showForm)}>Skriv recension</button>
+          )}
+          {user && (
+            <button
+              className={isAdded ? styles.addedBtn : "add-btn"}
+              onClick={handleAddToReadingList}
+              disabled={isAdded}>
+              {isAdded ? "Tillagd" : "+ Läslista"}
+            </button>
           )}
 
           {showForm && (

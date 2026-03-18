@@ -85,3 +85,12 @@
 .reviewText {
     line-height: 1.6;
 }
+
+.addedBtn {
+  background-color: #e0a800;
+  color: white;
+  cursor: default;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5em 1em;
+}
