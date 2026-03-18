@@ -1,0 +1,79 @@
+.section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1em;
+}
+
+.bookCard {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    max-width: 350px;
+    width: 95%;
+    margin: 2em auto;
+    padding: 1em;
+    background-color: #f3eaea;
+    border-radius: 2em;
+}
+
+.bookImage {
+    max-height: 220px;
+    width: auto;
+    object-fit: cover;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 250px;
+}
+
+.buttons select {
+    min-width: 180px;
+}
+
+.buttons button {
+    transition: transform 0.3s;
+}
+
+.buttons button:hover {
+    transform: scale(1.1);
+}
+
+.status {
+    display: inline-block;
+    margin: 0.5em 0;
+    font-weight: bold;
+    color: #a24d4d;
+}
+
+.status_want {
+  color: #e0a800;
+  font-weight: bold;
+}
+
+.status_reading {
+  color: #a24d4d;
+  font-weight: bold;
+}
+
+.status_done {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .section {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        grid-template-columns: 1fr;
+    }
+}
+

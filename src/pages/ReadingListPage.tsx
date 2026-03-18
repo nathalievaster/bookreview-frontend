@@ -4,88 +4,97 @@ import type { ReadingListEntry } from "../types/readinglist.types"
 import styles from "./css/ReadingListPage.module.css"
 
 const statusLabel: Record<string, string> = {
-  want_to_read: "Vill läsa",
-  reading: "Läser just nu",
-  done: "Klar"
+    want_to_read: "Vill läsa",
+    reading: "Läser just nu",
+    done: "Klar"
 }
 
 const ReadingListPage = () => {
-  const { user } = useAuth()
-  const [list, setList] = useState<ReadingListEntry[]>([])
-  const [loading, setLoading] = useState(true)
+    const { user } = useAuth()
+    const [list, setList] = useState<ReadingListEntry[]>([])
+    const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetchList()
-  }, [])
+    useEffect(() => {
+        fetchList()
+    }, [])
 
-  const fetchList = async () => {
-    const token = localStorage.getItem("token")
+    const fetchList = async () => {
+        const token = localStorage.getItem("token")
 
-    const res = await fetch("http://localhost:5000/api/readinglist", {
-      headers: { Authorization: `Bearer ${token}` }
-    })
+        const res = await fetch("http://localhost:5000/api/readinglist", {
+            headers: { Authorization: `Bearer ${token}` }
+        })
 
-    const data = await res.json()
-    setList(data)
-    setLoading(false)
-  }
+        const data = await res.json()
+        setList(data)
+        setLoading(false)
+    }
 
-  const handleStatusChange = async (id: string, status: string) => {
-    const token = localStorage.getItem("token")
+    const handleStatusChange = async (id: string, status: string) => {
+        const token = localStorage.getItem("token")
 
-    const res = await fetch(`http://localhost:5000/api/readinglist/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ status })
-    })
+        const res = await fetch(`http://localhost:5000/api/readinglist/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ status })
+        })
 
-    const updated = await res.json()
-    setList(list.map(entry => entry._id === id ? updated : entry))
-  }
+        const updated = await res.json()
+        setList(list.map(entry => entry._id === id ? updated : entry))
+    }
 
-  const handleDelete = async (id: string) => {
-    const token = localStorage.getItem("token")
+    const handleDelete = async (id: string) => {
+        const token = localStorage.getItem("token")
 
-    await fetch(`http://localhost:5000/api/readinglist/${id}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` }
-    })
+        await fetch(`http://localhost:5000/api/readinglist/${id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` }
+        })
 
-    setList(list.filter(entry => entry._id !== id))
-  }
+        setList(list.filter(entry => entry._id !== id))
+    }
 
-  if (loading) return <p>Laddar läslistan...</p>
+    const statusClass: Record<string, string> = {
+        want_to_read: styles.status_want,
+        reading: styles.status_reading,
+        done: styles.status_done
+    }
 
-  return (
-    <div>
-      <h1>Min läslista</h1>
+    if (loading) return <p>Laddar läslistan...</p>
 
-      {list.length === 0 && <p>Du har inga böcker i din läslista ännu.</p>}
+    return (
+        <div>
+            <h1>Min läslista</h1>
 
-      {list.map(entry => (
-        <div key={entry._id}>
-          {entry.bookImage && <img src={entry.bookImage} alt={entry.bookTitle} />}
-          <h3>{entry.bookTitle}</h3>
+            {list.length === 0 && <p>Du har inga böcker i din läslista ännu.</p>}
 
-          <select
-            value={entry.status}
-            onChange={(e) => handleStatusChange(entry._id, e.target.value)}
-          >
-            <option value="want_to_read">Vill läsa</option>
-            <option value="reading">Läser just nu</option>
-            <option value="done">Klar</option>
-          </select>
+            <div className={styles.section}>
+                {list.map(entry => (
+                    <div key={entry._id} className={styles.bookCard}>
+                        {entry.bookImage && <img src={entry.bookImage} alt={entry.bookTitle} className={styles.bookImage} />}
+                        <h3>{entry.bookTitle}</h3>
+                        <p className={statusClass[entry.status]}>{statusLabel[entry.status]}</p>
 
-          <p>{statusLabel[entry.status]}</p>
+                        <div className={styles.buttons}>
+                            <select
+                                value={entry.status}
+                                onChange={(e) => handleStatusChange(entry._id, e.target.value)}
+                            >
+                                <option value="want_to_read">Vill läsa</option>
+                                <option value="reading">Läser just nu</option>
+                                <option value="done">Klar</option>
+                            </select>
 
-          <button className="delete-btn" onClick={() => handleDelete(entry._id)}>Ta bort</button>
+                            <button className="delete-btn" onClick={() => handleDelete(entry._id)}>Ta bort</button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-      ))}
-    </div>
-  )
+    )
 }
 
 export default ReadingListPage

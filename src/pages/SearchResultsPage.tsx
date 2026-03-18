@@ -73,6 +73,24 @@ const SearchBooksPage = () => {
     fetchBooks(query)
   }
 
+  const handleAddToReadingList = async (book: Book) => {
+    const token = localStorage.getItem("token")
+
+    await fetch("http://localhost:5000/api/readinglist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        bookId: book._id,
+        bookTitle: book.title,
+        bookImage: book.image,
+        status: "want_to_read"
+      })
+    })
+  }
+
   return (
     <>
 
@@ -104,6 +122,7 @@ const SearchBooksPage = () => {
             <div className={styles.buttons}>
               <button className="add-btn" onClick={() => navigate(`/books/${book._id}`)}>Läs mer</button>
               {user && (<button className="delete-btn" onClick={() => navigate(`/books/${book._id}`)}>Skriv en recension</button>)}
+              {user && (<button className="add-btn" onClick={() => handleAddToReadingList(book)}>+ Läslista</button>)}
             </div>
           </div>
         ))}
