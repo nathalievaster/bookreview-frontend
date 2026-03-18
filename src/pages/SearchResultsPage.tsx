@@ -13,6 +13,8 @@ const SearchBooksPage = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [hasSearched, setHasSearched] = useState(false)
+  // State för att hålla koll på vilka böcker som lagts till i läslistan
+  const [addedBooks, setAddedBooks] = useState<string[]>([])
   const { user } = useAuth()
   const navigate = useNavigate()
 
@@ -89,6 +91,8 @@ const SearchBooksPage = () => {
         status: "want_to_read"
       })
     })
+
+    setAddedBooks(prev => [...prev, book._id])
   }
 
   return (
@@ -122,7 +126,12 @@ const SearchBooksPage = () => {
             <div className={styles.buttons}>
               <button className="add-btn" onClick={() => navigate(`/books/${book._id}`)}>Läs mer</button>
               {user && (<button className="delete-btn" onClick={() => navigate(`/books/${book._id}`)}>Skriv en recension</button>)}
-              {user && (<button className="add-btn" onClick={() => handleAddToReadingList(book)}>+ Läslista</button>)}
+              {user && (<button
+                className={addedBooks.includes(book._id) ? styles.addedBtn : "add-btn"}
+                onClick={() => handleAddToReadingList(book)}
+                disabled={addedBooks.includes(book._id)}>
+                {addedBooks.includes(book._id) ? "Tillagd" : "+ Läslista"}
+              </button>)}
             </div>
           </div>
         ))}

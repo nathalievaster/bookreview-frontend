@@ -61,3 +61,12 @@ input {
     gap: 1em;
     max-width: 250px;
 }
+
+.addedBtn {
+  background-color: #e0a800;
+  color: white;
+  cursor: default;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5em 1em;
+}
