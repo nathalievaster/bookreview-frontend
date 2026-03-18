@@ -1,8 +1,10 @@
 import styles from "./css/Home.module.css"
 import bookshelf from "../assets/bookshelf.avif"
 import bookpaper from "../assets/bookpaper.avif"
+import { useNavigate } from "react-router-dom"
 
 const HomePage = () => {
+  const navigate = useNavigate()
   return (
     <>
       <section className={styles.section}>
@@ -23,10 +25,17 @@ const HomePage = () => {
         <div>
           <h2>Vill du bidra med egna recensioner?</h2>
           <p>
-            För att dela dina egna tankar om böcker du läst gör du det enkelt
-            genom att logga in HÄR. Har du inget konto? Ingen fara!
-            Du registrerar dig snabbt och smidigt HÄR.
+            För att dela dina egna tankar om böcker du läst behöver du vara inloggad.
           </p>
+          <button className={styles.buttonlinks} onClick={() => navigate("/login")}>
+            Logga in
+          </button>
+          <p>
+            Har du inget konto? Ingen fara, det går snabbt och smidigt att komma igång.
+          </p>
+          <button className={styles.buttonlinks} onClick={() => navigate("/register")}>
+            Registrera dig
+          </button>
         </div>
       </section>
     </>

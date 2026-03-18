@@ -42,3 +42,9 @@
     height: auto;
   }
 }
+
+.buttonlinks {
+  background-color: #D96868;
+  color: white;
+  padding: 0.4em 1em;
+}
