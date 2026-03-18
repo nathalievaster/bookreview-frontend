@@ -58,6 +58,12 @@ const Header = () => {
           </NavLink>
         )}
 
+        {user && (
+          <NavLink to="/readinglist" onClick={() => setMenuOpen(false)}>
+            Läslista
+          </NavLink>
+        )}
+
         {user?.role === "admin" && (
           <NavLink to="/admin" onClick={() => setMenuOpen(false)}>
             Admin

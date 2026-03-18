@@ -10,6 +10,7 @@ import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import AdminPage from "./pages/AdminPage";
+import ReadingListPage from "./pages/ReadingListPage";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <MyPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "/readinglist",
+                element: (
+                    <ProtectedRoute>
+                        <ReadingListPage />
                     </ProtectedRoute>
                 )
             },

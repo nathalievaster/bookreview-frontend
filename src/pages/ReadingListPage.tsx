@@ -74,9 +74,9 @@ const ReadingListPage = () => {
             value={entry.status}
             onChange={(e) => handleStatusChange(entry._id, e.target.value)}
           >
-            <option value="want_to_read">📚 Vill läsa</option>
-            <option value="reading">📖 Läser just nu</option>
-            <option value="done">✅ Klar</option>
+            <option value="want_to_read">Vill läsa</option>
+            <option value="reading">Läser just nu</option>
+            <option value="done">Klar</option>
           </select>
 
           <p>{statusLabel[entry.status]}</p>
