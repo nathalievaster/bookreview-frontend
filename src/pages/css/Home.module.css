@@ -47,4 +47,10 @@
   background-color: #D96868;
   color: white;
   padding: 0.4em 1em;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.buttonlinks:hover {
+  background-color: #994b4b;
+  transform: scale(1.05)
 }
