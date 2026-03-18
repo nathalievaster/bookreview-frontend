@@ -19,7 +19,7 @@ const Header = () => {
         <div className={styles.rightSection}>
 
           {!user ? (
-            <NavLink to="/login" className={styles.navLink}>
+            <NavLink to="/login" className={styles.navLinkLogin}>
               Logga in
             </NavLink>
           ) : (

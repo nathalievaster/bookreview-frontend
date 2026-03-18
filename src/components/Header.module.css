@@ -8,7 +8,7 @@
   padding: 0 40px;
 }
 
-.logo a{
+.logo a {
   font-size: 28px;
   font-weight: bold;
 }
@@ -18,12 +18,14 @@
   align-items: center;
   gap: 20px;
 }
+
 a {
   text-decoration: none;
   color: #D96868;
-  transition: color 0.3s, transform 0.4s; 
+  transition: color 0.3s, transform 0.4s;
   display: inline-block;
 }
+
 a:hover {
   color: #a24d4d;
   transform: scale(1.1);
@@ -35,7 +37,13 @@ a:hover {
   font-weight: bold;
 }
 
-.logoutButton {
+.navLinkLogin {
+  padding: 0.4em 1em;
+  border-radius: 20px;
+}
+
+.logoutButton,
+.navLinkLogin {
   background: none;
   border: 3px solid #D96868;
   color: #D96868;
@@ -43,7 +51,8 @@ a:hover {
   transition: background-color 0.3s, transform 0.4s;
 }
 
-.logoutButton:hover {
+.logoutButton:hover,
+.navLinkLogin:hover {
   transform: scale(1.05);
   background-color: #D96868;
   color: white;
@@ -55,6 +64,12 @@ a:hover {
   font-size: 28px;
   color: #D96868;
   cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.hamburger:hover {
+  transform: scale(1.15);
+  color: #be5c5c;
 }
 
 /* Sidomeny */
@@ -100,6 +115,6 @@ a:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 999;
 }
