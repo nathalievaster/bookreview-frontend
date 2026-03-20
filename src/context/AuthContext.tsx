@@ -17,7 +17,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const login = async (credentials: LoginCredentials) => {
 
         try {
-            const res = await fetch("http://localhost:5000/api/auth/login", {
+            const res = await fetch("https://bookreview-backend-7kte.onrender.com/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/api/auth/validate", {
+            const res = await fetch("https://bookreview-backend-7kte.onrender.com/api/auth/validate", {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`

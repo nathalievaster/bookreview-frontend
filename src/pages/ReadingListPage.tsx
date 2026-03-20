@@ -21,7 +21,7 @@ const ReadingListPage = () => {
     const fetchList = async () => {
         const token = localStorage.getItem("token")
 
-        const res = await fetch("http://localhost:5000/api/readinglist", {
+        const res = await fetch("https://bookreview-backend-7kte.onrender.com/api/readinglist", {
             headers: { Authorization: `Bearer ${token}` }
         })
 
@@ -33,7 +33,7 @@ const ReadingListPage = () => {
     const handleStatusChange = async (id: string, status: string) => {
         const token = localStorage.getItem("token")
 
-        const res = await fetch(`http://localhost:5000/api/readinglist/${id}`, {
+        const res = await fetch(`https://bookreview-backend-7kte.onrender.com/api/readinglist/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const ReadingListPage = () => {
     const handleDelete = async (id: string) => {
         const token = localStorage.getItem("token")
 
-        await fetch(`http://localhost:5000/api/readinglist/${id}`, {
+        await fetch(`https://bookreview-backend-7kte.onrender.com/api/readinglist/${id}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })

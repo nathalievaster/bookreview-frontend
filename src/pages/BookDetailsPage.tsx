@@ -42,7 +42,7 @@ const BookDetailsPage = () => {
       const token = localStorage.getItem("token")
       if (!token) return
 
-      const res = await fetch("http://localhost:5000/api/readinglist", {
+      const res = await fetch("https://bookreview-backend-7kte.onrender.com/api/readinglist", {
         headers: { Authorization: `Bearer ${token}` }
       })
 
@@ -58,7 +58,7 @@ const BookDetailsPage = () => {
     if (!book) return
     const token = localStorage.getItem("token")
 
-    await fetch("http://localhost:5000/api/readinglist", {
+    await fetch("https://bookreview-backend-7kte.onrender.com/api/readinglist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const BookDetailsPage = () => {
   }
 
   const fetchReviews = async () => {
-    const res = await fetch(`http://localhost:5000/api/reviews/${id}`)
+    const res = await fetch(`https://bookreview-backend-7kte.onrender.com/api/reviews/${id}`)
     const data = await res.json()
     setReviews(data)
   }
@@ -101,7 +101,7 @@ const BookDetailsPage = () => {
 
     const token = localStorage.getItem("token")
 
-    await fetch("http://localhost:5000/api/reviews", {
+    await fetch("https://bookreview-backend-7kte.onrender.com/api/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

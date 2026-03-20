@@ -25,7 +25,7 @@ const MyPage = () => {
 
     const token = localStorage.getItem("token")
 
-    const res = await fetch("http://localhost:5000/api/reviews/myreviews", {
+    const res = await fetch("https://bookreview-backend-7kte.onrender.com/api/reviews/myreviews", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -45,7 +45,7 @@ const MyPage = () => {
   const handleDelete = async (id: string) => {
     const token = localStorage.getItem("token")
 
-    await fetch(`http://localhost:5000/api/reviews/${id}`, {
+    await fetch(`https://bookreview-backend-7kte.onrender.com/api/reviews/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -66,7 +66,7 @@ const MyPage = () => {
   const handleUpdate = async (id: string) => {
     const token = localStorage.getItem("token")
 
-    const res = await fetch(`http://localhost:5000/api/reviews/${id}`, {
+    const res = await fetch(`https://bookreview-backend-7kte.onrender.com/api/reviews/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

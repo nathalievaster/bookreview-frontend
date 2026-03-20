@@ -15,7 +15,7 @@ const AdminPage = () => {
 
     const token = localStorage.getItem("token")
 
-    const res = await fetch("http://localhost:5000/api/reviews", {
+    const res = await fetch("https://bookreview-backend-7kte.onrender.com/api/reviews", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -31,7 +31,7 @@ const AdminPage = () => {
 
     const token = localStorage.getItem("token")
 
-    await fetch(`http://localhost:5000/api/reviews/${id}`, {
+    await fetch(`https://bookreview-backend-7kte.onrender.com/api/reviews/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
