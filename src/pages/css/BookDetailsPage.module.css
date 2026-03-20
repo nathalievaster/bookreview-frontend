@@ -49,7 +49,6 @@
     padding: 1rem;
     border-radius: 20px;
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-
 }
 
 .reviewForm select {
@@ -87,12 +86,12 @@
 }
 
 .addedBtn {
-  background-color: #e0a800;
-  color: white;
-  cursor: default;
-  border: none;
-  border-radius: 20px;
-  padding: 0.5em 1em;
+    background-color: #e0a800;
+    color: white;
+    cursor: default;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5em 1em;
 }
 
 .hasreviewed {
@@ -101,4 +100,31 @@
     box-shadow: 5px;
     border-bottom: 2px solid #4C5C2D;
     padding: 0.5em;
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .bookSection {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .bookImage {
+        width: 130px;
+        margin-top: 1em;
+    }
+
+    .bookInfo {
+        width: 100%;
+    }
+
+    .reviewHeader {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
 }
