@@ -10,7 +10,6 @@ const statusLabel: Record<string, string> = {
 }
 
 const ReadingListPage = () => {
-    const { user } = useAuth()
     const [list, setList] = useState<ReadingListEntry[]>([])
     const [loading, setLoading] = useState(true)
 
