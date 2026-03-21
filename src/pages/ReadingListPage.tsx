@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { useAuth } from "../context/AuthContext"
 import type { ReadingListEntry } from "../types/readinglist.types"
 import styles from "./css/ReadingListPage.module.css"
 
